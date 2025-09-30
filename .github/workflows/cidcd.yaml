@@ -3,20 +3,20 @@
     on: [push]
 
     jobs:
-        jobs:
+        job1:
             runs-on: ubuntu-latest
             steps:
                 - run: echo "hello from jobs"
 
         job2:
             runs-on: ubuntu-latest
-            needs: jobs
+            needs: job1
             if: success()
             steps:
                 - run: echo "job1 failed. hello from job 3"
         job3:
             runs-on: ubuntu-latest
-            needs: job2
+            needs: job1
             if: failure()                     
             steps:
                 - run: echo "job1 failed. hello from job 3"
