@@ -1,0 +1,13 @@
+    name: Matrix hello
+
+    on: [push]
+
+    jobs:
+        hello-matrix:
+            runs-on: ubuntu-latest
+            strategy:
+                matrix:
+                    jobname: [dev,uat,prod]
+            steps:
+                - run: ehco "deploying the code to ${{ matrix.jobname}}"
+                 
