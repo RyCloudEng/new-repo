@@ -6,17 +6,17 @@
         jobs:
             runs-on: ubuntu-latest
             steps:
-                - run: echo "hello from job 1"
+                - run: echo "hello from jobs"
 
         job2:
             runs-on: ubuntu-latest
-            needs: job1
+            needs: jobs
             if: success()
             steps:
                 - run: echo "job1 failed. hello from job 3"
         job3:
             runs-on: ubuntu-latest
-            needs: job1
+            needs: job2
             if: failure()                     
             steps:
                 - run: echo "job1 failed. hello from job 3"
