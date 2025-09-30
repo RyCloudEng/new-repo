@@ -9,5 +9,5 @@
                 matrix:
                     jobname: [dev,uat,prod]
             steps:
-                - run: ehco "deploying the code to ${{ matrix.jobname}}"
-                 
+                - run: echo "deploying the code to ${{ matrix.jobname }}"
+
