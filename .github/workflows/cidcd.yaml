@@ -1,13 +1,23 @@
-    name: Matrix hello
+    name: conditonal job
 
     on: [push]
 
     jobs:
-        hello-matrix:
+        jobs:
             runs-on: ubuntu-latest
-            strategy:
-                matrix:
-                    jobname: [dev,uat,prod]
             steps:
-                - run: echo "deploying the code to ${{ matrix.jobname }}"
+                - run: echo "hello from job 1"
+
+        job2:
+            runs-on: ubuntu-latest
+            needs: job1
+            if: success()
+            steps:
+                - run: echo "job1 failed. hello from job 3"
+        job3:
+            runs-on: ubuntu-latest
+            needs: job1
+            if: failure()                     
+            steps:
+                - run: echo "job1 failed. hello from job 3"
 
